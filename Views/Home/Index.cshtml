@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="bg-no-repeat bg-cover" style="background-image: url(public/bg-sena.jpg)">
+    <div class='p-4 md:p-12 flex justity-center items-center'>
+        <div class="container mx-auto">
+            <section class="bg-white rounded-md p-5 md:p-24 shadow-2xl">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24">
+                    <div class="flex justify-between flex-col gap-8">
+                        <h1 class="text-4xl md:text-6xl font-bold">Miniproyecto web <span
+                                class="text-green-800">SENA</span></h1>
+                        <div class="text-xl">
+                            <p>
+                                El Servicio Nacional de Aprendizaje (Sena) requiere un sistema web que permita realizar
+                                la
+                                gestión
+                                de
+                                horarios de profesores, teniendo en cuenta la asignación de salones.
+                                Se tienen dos usuarios un coordinador (administrador del sistema) y el docente
+                            </p>
+                            <p class="mt-4">
+                                Como <span class="font-bold">Coordinador</span> podrá Gestionar periodos Académicos,
+                                Gestionar
+                                ambiente y Gestionar horarios
+                            </p>
+                            <p class="mt-4">
+                                Como <span class="font-bold">Docente</span> podrá ver su información personal y su
+                                horario
+                                por
+                                periodo.
+                            </p>
+                        </div>
+                        <div class="mt-6 justify-center flex md:block">
+                            <a href="/login"
+                                class="bg-white border-2 border-black text-black text-center p-4 rounded-full hover:bg-gray-200 cursor-pointer font-semibold">
+                                Ir a inicio de sesión
+                            </a>
+                        </div>
+                    </div>
+                    <div class="bg-contain hidden md:block">
+                        <img class="shadow-sm rounded-xl object-cover w-full h-full" src="public/sena.jpg"
+                            alt="senas" />
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

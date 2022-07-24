@@ -1,0 +1,43 @@
+@model min_web_project_v2.Models.PeriodModel
+
+@{
+    ViewData["Title"] = "Crear Periodo";
+    Layout = "/Views/Shared/_LayoutCoordinator.cshtml";
+}
+
+<div class="min-h-screen">
+    <div class="relative grid gap-5 grid-cols-1 md:grid-cols-3">
+        <div class="min-h-screen col-span-0 md:col-span-1">
+            <img class="w-full h-full object-cover" src="/public/academic-period.jpg" />
+        </div>
+        <div
+            class="py-12 bg-white/80 col-span-1 md:col-span-2 flex flex-col items-center absolute w-full md:relative h-full">
+            <h2 class="text-center text-2xl font-semibold">Crear</h2>
+            <div class="px-8 pt-2 pb-8">
+                <p class="text-black/60 font-semibold">
+                    Registra de manera agradable todos los peridos académicos que necesites
+                </p>
+            </div>
+            <form asp-action="Create">
+                <div class="flex flex-col space-y-5 justify-center">
+                    <div class="flex flex-col space-y-2">
+                        <h1>Nombre del periodo </h1>
+                        <input asp-for="Name" class="px-2 rounded-md border-2 border-gray w-80 h-10" />
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <h1>Fecha de inicio </h1>
+                        <input type="date" asp-for="startDate" class="px-2 rounded-md border-2 border-gray w-80 h-10" />
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <h1>Fecha de fin </h1>
+                        <input type="date" asp-for="endDate" class="px-2 rounded-md border-2 border-gray w-80 h-10"
+                            placeholder="dd/mm/aaaa" />
+                    </div>
+                    <input
+                        class="rounded-md bg-black font-semibold p-2 text-center cursor-pointer text-white hover:bg-black/80"
+                        type="submit" value="Registrar periodo" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
