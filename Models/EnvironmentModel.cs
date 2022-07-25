@@ -7,7 +7,6 @@ namespace min_web_project_v2.Models
     public class EnvironmentModel : SupabaseModel
     {
         [PrimaryKey("id", false)]
-        [Column("id")]
         public string id { get; set; }
 
         [Column("name")]

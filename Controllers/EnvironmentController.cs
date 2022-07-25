@@ -7,6 +7,7 @@ namespace min_web_project_v2.Controllers;
 public class EnvironmentController : Controller
 {
     private readonly ILogger<EnvironmentController> _logger;
+    private List<EnvironmentModel> environments = new List<EnvironmentModel>();
 
     public EnvironmentController(ILogger<EnvironmentController> logger)
     {
@@ -29,6 +30,11 @@ public class EnvironmentController : Controller
 
         if (user.Role.Equals("coordinador"))
         {
+            // environments = await Supabase.Client.Instance.From<EnvironmentModel>().Filter()
+            environments = Supabase.Client.Instance.From<EnvironmentModel>().Get().Result.Models;
+
+            Console.WriteLine("Lista de ambientes: ");
+            Console.WriteLine(environments[0].name);
             return View();
         }
 
@@ -40,25 +46,41 @@ public class EnvironmentController : Controller
         return View();
     }
 
+
     public IActionResult Create()
     {
         return RedirectToAction("Index", "Coordinator");
     }
 
-    public IActionResult Read()
+    [HttpPost]
+    public async Task<IActionResult> Create(EnvironmentModel environment)
     {
-        return RedirectToAction("Index", "Coordinator");
+        try
+        {
+            var instance = Supabase.Client.Instance;
+            var channels = await instance.From<EnvironmentModel>().Insert(environment);
+            return RedirectToAction("Create");
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
+    }
+
+    public IActionResult List()
+    {
+        return View();
     }
 
     public IActionResult Update()
     {
-        return RedirectToAction("Index", "Coordinator");
+        return View();
     }
 
     public IActionResult Delete()
     {
         return RedirectToAction("Index", "Coordinator");
-    }    
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
