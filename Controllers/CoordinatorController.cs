@@ -33,6 +33,7 @@ public class CoordinatorController : Controller
             List<UserModel> teachers = Supabase.Client.Instance.From<UserModel>().Get().Result.Models;
             List<PeriodModel> periods = Supabase.Client.Instance.From<PeriodModel>().Get().Result.Models;
             List<ProgramModel> programs = Supabase.Client.Instance.From<ProgramModel>().Get().Result.Models;
+            List<ScheduleModel> schedule = Supabase.Client.Instance.From<ScheduleModel>().Get().Result.Models;
 
             List<AsociateModel> asociate = Supabase.Client.Instance
                 .From<AsociateModel>()
@@ -45,6 +46,7 @@ public class CoordinatorController : Controller
             logic.PeriodModels = periods;
             logic.AsociateModel = asociate;
             logic.UserModels = teachers;
+            logic.ScheduleModel = schedule;
 
             return View(logic);
         }

@@ -17,6 +17,12 @@ namespace min_web_project_v2.Models
 
         public List<AsociateModel> AsociateModel { get; set; }
 
+        public List<ScheduleModel> ScheduleModel { get; set; }
+
+        public string[] days = { "lunes", "martes", "miercoles", "jueves", "viernes", "sabado" };
+
+        public string[] schedule = { "7 am - 1 pm", "2 pm - 10 pm" };
+
         [Column("teacher")]
         public string Docente { get; set; }
 
