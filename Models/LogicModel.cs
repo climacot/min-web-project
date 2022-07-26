@@ -23,6 +23,16 @@ namespace min_web_project_v2.Models
 
         public string[] schedule = { "7 am - 1 pm", "2 pm - 10 pm" };
 
+        public string[] colors = { "bg-blue-300",
+                                    "bg-yellow-300",
+                                    "bg-orange-300",
+                                    "bg-violet-300",
+                                    "bg-indigo-300",
+                                    "bg-red-300",
+                                    "bg-gray-300",
+                                    "bg-purple-300",
+                                };
+
         [Column("teacher")]
         public string Docente { get; set; }
 

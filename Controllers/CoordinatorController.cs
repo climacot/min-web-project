@@ -64,6 +64,23 @@ public class CoordinatorController : Controller
     {
         try
         {
+            int diarias = 0;
+            int semanales = 0;
+            int existe = 0;
+
+            List<ScheduleModel> schedulef = Supabase.Client.Instance
+                .From<ScheduleModel>()
+                .Filter("teacher", Postgrest.Constants.Operator.Equals, schedule.Docente)
+                .Get().Result.Models;
+
+            foreach (var item in schedulef)
+            {
+                if (item.Dia.Equals(schedule.Dia))
+                {
+                    
+                }
+            }
+
             var instance = Supabase.Client.Instance;
             var channels = await instance.From<ScheduleModel>().Insert(schedule);
             return RedirectToAction("Index", "Coordinator");
