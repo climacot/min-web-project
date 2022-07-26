@@ -3,4 +3,78 @@
     Layout = "/Views/Shared/_LayoutTeacher.cshtml";
 }
 
-<h1>Docente</h1>
+<body>
+    <div class="flex flex-col justify-center mx-16 my-16 text-center">
+        <h1 class="font-bold">Información personal:</h1>
+        <h2>Nombre: @Model.UserModel.Name</h2>
+        <h2>Tipo de profesor: @Model.UserModel.TypeOfTeaching</h2>
+        <h2>Tipo de contrato: @Model.UserModel.TypeOfContract</h2>
+        <h2>Area: @Model.UserModel.Area</h2>
+    </div>
+
+
+    <div class="flex flex-col justify-center mx-16 my-16">
+        <h1 class="font-bold text-center">Horario:</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th class="border border-gray-500 px-4 py-2"></th>
+                    <th class="border border-gray-500 px-4 py-2">Lunes</th>
+                    <th class="border border-gray-500 px-4 py-2">Martes</th>
+                    <th class="border border-gray-500 px-4 py-2">Miercoles</th>
+                    <th class="border border-gray-500 px-4 py-2">Jueves</th>
+                    <th class="border border-gray-500 px-4 py-2">Viernes</th>
+                    <th class="border border-gray-500 px-4 py-2">Sabado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-gray-500 px-4 py-2">
+                        7 am - 1 pm
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-500 px-4 py-2">
+                        2 pm - 10 pm
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
