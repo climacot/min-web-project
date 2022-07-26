@@ -46,12 +46,6 @@ public class EnvironmentController : Controller
         return View();
     }
 
-
-    public IActionResult Create()
-    {
-        return RedirectToAction("Index", "Coordinator");
-    }
-
     [HttpPost]
     public async Task<IActionResult> Create(EnvironmentModel environment)
     {
@@ -59,7 +53,7 @@ public class EnvironmentController : Controller
         {
             var instance = Supabase.Client.Instance;
             var channels = await instance.From<EnvironmentModel>().Insert(environment);
-            return RedirectToAction("Create");
+            return RedirectToAction("List", "Environment");
         }
         catch (System.Exception)
         {
@@ -70,13 +64,33 @@ public class EnvironmentController : Controller
     public IActionResult List()
     {
         environments = Supabase.Client.Instance.From<EnvironmentModel>().Get().Result.Models;
-        Console.WriteLine("Estado antes de enviarle a la lista: " + environments[0].name);
+        // Console.WriteLine("Estado antes de enviarle a la lista: " + environments[0].name);
         return View(environments);
     }
 
-    public IActionResult Update()
+    public async Task<IActionResult> Update(string id)
     {
-        return View();
+        EnvironmentModel environment = await Supabase.Client.Instance
+            .From<EnvironmentModel>()
+            .Filter("id", Postgrest.Constants.Operator.Equals, id)
+            .Single();
+
+        return View(environment);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Update(EnvironmentModel environment)
+    {
+        try
+        {
+            var instance = Supabase.Client.Instance;
+            var channels = await instance.From<EnvironmentModel>().Update(environment);
+            return RedirectToAction("List", "Environment");
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
     }
 
     public IActionResult Delete()

@@ -7,7 +7,6 @@ namespace min_web_project_v2.Models
     public class PeriodModel : SupabaseModel
     {
         [PrimaryKey("id", false)]
-        [Column("id")]
         public int Id { get; set; }
 
         [Column("name")]

@@ -37,7 +37,10 @@
                             @Html.DisplayFor(modelItem => item.location)
                         </td>
                         <td class="border border-gray-500 px-4 py-2">
-                             @Html.DisplayFor(modelItem => item.state)
+                            @Html.DisplayFor(modelItem => item.state)
+                        </td>
+                        <td class="border border-gray-500 px-4 py-2">
+                            <a asp-action="Update" asp-route-id="@item.id">Edit</a>
                         </td>
                         @* <td>
                             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
