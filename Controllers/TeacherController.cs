@@ -16,6 +16,7 @@ public class TeacherController : Controller
     public async Task<IActionResult> Index()
     {
         UserModel user;
+        TeacherInformationModel TheacherInformation = new TeacherInformationModel();
         Supabase.Gotrue.User session;
         session = Supabase.Client.Instance.Auth.CurrentUser;
 
@@ -29,7 +30,10 @@ public class TeacherController : Controller
 
         if (user.Role.Equals("docente"))
         {
-            return View();
+            TheacherInformation.UserModel = user;
+            TheacherInformation.ScheduleModels = Supabase.Client.Instance.From<ScheduleModel>().Filter("teacher", Postgrest.Constants.Operator.Equals, session.Id).Get().Result.Models;
+            
+            return View(TheacherInformation);
         }
 
         if (user.Role.Equals("coordinador"))

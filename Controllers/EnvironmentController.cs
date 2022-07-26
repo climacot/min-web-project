@@ -59,7 +59,6 @@ public class EnvironmentController : Controller
     public IActionResult List()
     {
         environments = Supabase.Client.Instance.From<EnvironmentModel>().Get().Result.Models;
-        // Console.WriteLine("Estado antes de enviarle a la lista: " + environments[0].name);
         return View(environments);
     }
 
