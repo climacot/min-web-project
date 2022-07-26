@@ -66,19 +66,26 @@ public class CoordinatorController : Controller
         {
             int diarias = 0;
             int semanales = 0;
-            int existe = 0;
+            bool existe = false;
 
-            List<ScheduleModel> schedulef = Supabase.Client.Instance
+            List<ScheduleModel> schedules = Supabase.Client.Instance.From<ScheduleModel>().Get().Result.Models;
+
+            ScheduleModel scheduleu = await Supabase.Client.Instance
                 .From<ScheduleModel>()
                 .Filter("teacher", Postgrest.Constants.Operator.Equals, schedule.Docente)
-                .Get().Result.Models;
+                .Single();
 
-            foreach (var item in schedulef)
+            foreach (var item in schedules)
             {
-                if (item.Dia.Equals(schedule.Dia))
+                if (schedule.Dia.Equals(item.Dia) && schedule.Horario.Equals(item.Horario) && schedule.Ambiente.Equals(schedule.Ambiente))
                 {
-                    
+                    existe = true;
                 }
+            }
+
+            if (existe)
+            {
+                return RedirectToAction("Index", "Coordinator");
             }
 
             var instance = Supabase.Client.Instance;

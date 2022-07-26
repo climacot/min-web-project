@@ -61,7 +61,7 @@
                     <spa>Horario</spa>
                     <select asp-for='Horario' class="px-2 rounded-md border-2 border-gray w-80 h-10">
                         <option value="7 am - 9 am">7 am - 9 am</option>
-                        <option value="9 pm - 11 am">9 pm - 11 am</option>
+                        <option value="9 am - 11 am">9 am - 11 am</option>
                         <option value="11 am - 1 pm">11 am - 1 pm</option>
                         <option value="2 pm - 4 pm">2 pm - 4 pm</option>
                         <option value="4 pm - 6 pm">4 pm - 6 pm</option>
@@ -117,7 +117,7 @@
                         <td class="border border-gray-500">
                             @foreach (var item2 in Model.ScheduleModel)
                             {
-                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("9 am - 11 pm"))
+                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("9 am - 11 am"))
                                 {
                                     <div class="@Model.colors[new Random().Next(Model.colors.Length)] px-4 py-2 mb-1">
                                         <div>Nombre: @item2.Docente</div>
