@@ -1,3 +1,5 @@
+@model min_web_project_v2.Models.LogicModel
+
 @{
     ViewData["Title"] = "Coordinador";
     Layout = "/Views/Shared/_LayoutCoordinator.cshtml";
@@ -5,44 +7,69 @@
 
 <body>
     <div class="flex flex-col justify-center mx-16 my-16">
-        <div class="mb-12 flex flex-row gap-4 flex-wrap">
-            <div class="flex flex-col">
-                <spa>Periodo</spa>
-                <select class="px-2 rounded-md border-2 border-gray w-80 h-10">
-                    @foreach (PeriodModel item in Model.PeriodModels)
-                    {
-                        <option value="@item.Name">@item.Name</option>
-                    }
-                </select>
+        <form asp-action='CreateSchedule'>
+            <div class="mb-12 flex flex-row gap-4 flex-wrap">
+                <div class="flex flex-col">
+                    <spa>Periodo</spa>
+                    <select asp-for='Periodo' class="px-2 rounded-md border-2 border-gray w-80 h-10">
+                        @foreach (PeriodModel item in Model.PeriodModels)
+                        {
+                            <option value="@item.Name">@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <spa>Docente</spa>
+                    <select asp-for='Docente' class="px-2 rounded-md border-2 border-gray w-80 h-10">
+                        @foreach (UserModel item in Model.UserModels)
+                        {
+                            <option value="@item.Name">@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <spa>Ambiente</spa>
+                    <select asp-for='Ambiente' class="px-2 rounded-md border-2 border-gray w-80 h-10">
+                        @foreach (EnvironmentModel item in Model.EnvironmentModels)
+                        {
+                            <option value="@item.name">@item.name</option>
+                        }
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <spa>Programa - Competencia</spa>
+                    <select asp-for='ProgramaAmbiente' class="px-2 rounded-md border-2 border-gray w-80 h-10">
+                        @foreach (AsociateModel item in Model.AsociateModel)
+                        {
+                            <option value="@item.program.Name - @item.competencies.Name">@item.program.Name -
+                                @item.competencies.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <spa>Dia</spa>
+                    <select asp-for='Dia' class="px-2 rounded-md border-2 border-gray w-80 h-10">
+                        <option value="lunes">lunes</option>
+                        <option value="martes">martes</option>
+                        <option value="miercoles">miercoles</option>
+                        <option value="jueves">jueves</option>
+                        <option value="viernes">viernes</option>
+                        <option value="sabado">sabado</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <spa>Horario</spa>
+                    <select asp-for='Horario' class="px-2 rounded-md border-2 border-gray w-80 h-10">
+                        <option value="7 am - 1 pm">7 am - 1 pm</option>
+                        <option value="2 pm - 10 pm">2 pm - 10 pm</option>
+                    </select>
+                </div>
             </div>
-            <div class="flex flex-col">
-                <spa>Docente</spa>
-                <select class="px-2 rounded-md border-2 border-gray w-80 h-10">
-                    @foreach (UserModel item in Model.UserModels)
-                    {
-                        <option value="@item.Name">@item.Name</option>
-                    }
-                </select>
+            <div class="mt-12 mb-12">
+                <input title="Guardar" type="submit" value="Guardar"
+                    class="rounded-md bg-black font-semibold p-2 text-center cursor-pointer text-white hover:bg-black/80" />
             </div>
-            <div class="flex flex-col">
-                <spa>Ambiente</spa>
-                <select class="px-2 rounded-md border-2 border-gray w-80 h-10">
-                    @foreach (EnvironmentModel item in Model.EnvironmentModels)
-                    {
-                        <option value="@item.name">@item.name</option>
-                    }
-                </select>
-            </div>
-            <div class="flex flex-col">
-                <spa>Competencia - Programa</spa>
-                <select class="px-2 rounded-md border-2 border-gray w-80 h-10">
-                    @foreach (ProgramModel item in Model.ProgramModels)
-                    {
-                        <option value="@item.Name">@item.Name</option>
-                    }
-                </select>
-            </div>
-        </div>
+        </form>
         <table>
             <thead>
                 <tr>
@@ -61,22 +88,22 @@
                         7 am - 1 pm
                     </td>
                     <td class="border border-gray-500 px-4 py-2">
-                        a
+
                     </td>
                     <td class="border border-gray-500 px-4 py-2">
-                        a
+
                     </td>
                     <td class="border border-gray-500 px-4 py-2">
-                        a
+
                     </td>
                     <td class="border border-gray-500 px-4 py-2">
-                        a
+
                     </td>
                     <td class="border border-gray-500 px-4 py-2">
-                        a
+
                     </td>
                     <td class="border border-gray-500 px-4 py-2">
-                        a
+
                     </td>
                 </tr>
                 <tr>
@@ -84,29 +111,25 @@
                         2 pm - 10 pm
                     </td>
                     <td class="border border-gray-500 px-4 py-2">
-                        a
+
                     </td>
                     <td class="border border-gray-500 px-4 py-2">
-                        a
+
                     </td>
                     <td class="border border-gray-500 px-4 py-2">
-                        a
+
                     </td>
                     <td class="border border-gray-500 px-4 py-2">
-                        a
+
                     </td>
                     <td class="border border-gray-500 px-4 py-2">
-                        a
+
                     </td>
                     <td class="border border-gray-500 px-4 py-2">
-                        a
+
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div class="mt-12">
-            <a
-                class="rounded-md bg-black font-semibold p-2 text-center cursor-pointer text-white hover:bg-black/80">Guardar</a>
-        </div>
     </div>
 </body>

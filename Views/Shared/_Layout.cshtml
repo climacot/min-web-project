@@ -1,21 +1,18 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - min_web_project_v2</title>
-    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
-    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
-    @* <link rel="stylesheet" href="~/min_web_project_v2.styles.css" asp-append-version="true" /> *@
+    <title>@ViewData["Title"] - Sena</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-    <header class="flex bg-green-800">
-        <nav class="flex bg-white/30 text-white cursor-pointer">
-            <a href="/" class="border-r p-4 px-4 hover:bg-green-800">Bienvenida</a>
-            <a href="/login" class="px-4 p-4 border-r hover:bg-green-800">Iniciar Sesión</a>
+    <header class="flex bg-gray-200">
+        <nav class="flex text-black cursor-pointer">
+            <a href="/" class="p-4 border-r border-orange-500  hover:bg-gray-300">Inicio</a>
+            <a href="/login" class="p-4 border-r border-orange-500 hover:bg-gray-300">Iniciar Sesión</a>
         </nav>
     </header>
 
@@ -40,9 +37,6 @@
         </div>
     </footer>
 
-    @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
-    @* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
-    @* <script src="~/js/site.js" asp-append-version="true"></script> *@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

@@ -34,11 +34,16 @@ public class CoordinatorController : Controller
             List<PeriodModel> periods = Supabase.Client.Instance.From<PeriodModel>().Get().Result.Models;
             List<ProgramModel> programs = Supabase.Client.Instance.From<ProgramModel>().Get().Result.Models;
 
+            List<AsociateModel> asociate = Supabase.Client.Instance
+                .From<AsociateModel>()
+                .Select("program(*), competencies(*)")
+                .Get().Result.Models;
+
             LogicModel logic = new LogicModel();
 
             logic.EnvironmentModels = environments;
             logic.PeriodModels = periods;
-            logic.ProgramModels = programs;
+            logic.AsociateModel = asociate;
             logic.UserModels = teachers;
 
             return View(logic);
@@ -50,6 +55,21 @@ public class CoordinatorController : Controller
         }
 
         return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateSchedule(ScheduleModel schedule)
+    {
+        try
+        {
+            var instance = Supabase.Client.Instance;
+            var channels = await instance.From<ScheduleModel>().Insert(schedule);
+            return RedirectToAction("Index", "Coordinator");
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
     }
 
     public async Task<IActionResult> Close()

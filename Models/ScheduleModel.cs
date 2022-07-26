@@ -4,18 +4,10 @@ using Supabase;
 namespace min_web_project_v2.Models
 {
     [Table("schedule")]
-    public class LogicModel
+    public class ScheduleModel : SupabaseModel
     {
         [PrimaryKey("id", false)]
         public int Id { get; set; }
-
-        public List<PeriodModel> PeriodModels { get; set; }
-
-        public List<UserModel> UserModels { get; set; }
-
-        public List<EnvironmentModel> EnvironmentModels { get; set; }
-
-        public List<AsociateModel> AsociateModel { get; set; }
 
         [Column("teacher")]
         public string Docente { get; set; }
