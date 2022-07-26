@@ -14,8 +14,8 @@ Requerimientos
 6. el CNT debe tener exactamente a la semana una asignación horaria semanal de 40 horas, sin exceder en un día las 10 horas ❌
 7. Coordinador puede con el modelo Ambiente: ⬇
 - Crear ✅
-- Editar ❌
-- Inactivar ❌
+- Editar ✅
+- Inactivar ✅
 - Consultar ✅
 8. Definir ambiente ✅
 9. Definir programa de aprendizaje ❌
