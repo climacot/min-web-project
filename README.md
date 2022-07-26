@@ -44,4 +44,5 @@ Requerimientos
 17. El coordinador selecciona la competencia que dictará el docente, la cantidad de horas a orientar de la competencia y el ambiente de aprendizaje ✅
 18. El sistema debe detectar las reglas de negocio del docente (cantidad de horas diarias y por semana) y
     del ambiente de aprendizaje verificar disponibilidad, en caso no estar disponible debe mostrar un
-    mensaje “Espacio Ocupado o No disponible en la franja horaria seleccionada”. ❌
+    mensaje “Espacio Ocupado o No disponible en la franja horaria seleccionada”. ⚠
+19. Pagina del profesor ✅

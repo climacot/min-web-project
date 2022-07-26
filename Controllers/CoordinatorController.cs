@@ -48,6 +48,7 @@ public class CoordinatorController : Controller
             logic.UserModels = teachers;
             logic.ScheduleModel = schedule;
 
+            // ViewBag.Alert = "dddd";
             return View(logic);
         }
 
@@ -55,7 +56,7 @@ public class CoordinatorController : Controller
         {
             return RedirectToAction("Index", "Teacher");
         }
-
+        // ViewBag.Alert = "dddd";
         return View();
     }
 
@@ -67,6 +68,8 @@ public class CoordinatorController : Controller
             int diarias = 0;
             int semanales = 0;
             bool existe = false;
+            int maxdiarias;
+            int maxSemanales;
 
             List<ScheduleModel> schedules = Supabase.Client.Instance.From<ScheduleModel>().Get().Result.Models;
 
@@ -77,14 +80,52 @@ public class CoordinatorController : Controller
 
             foreach (var item in schedules)
             {
+                if (schedule.Docente.Equals(item.Docente) && schedule.Periodo.Equals(item.Periodo))
+                {
+                    semanales = semanales + 2;
+                }
+
+                if (schedule.Docente.Equals(item.Docente) && schedule.Dia.Equals(item.Dia) && schedule.Periodo.Equals(item.Periodo))
+                {
+                    diarias = diarias + 2;
+                }
+
                 if (schedule.Dia.Equals(item.Dia) && schedule.Horario.Equals(item.Horario) && schedule.Ambiente.Equals(schedule.Ambiente))
                 {
                     existe = true;
                 }
             }
 
+            UserModel user = await Supabase.Client.Instance
+                .From<UserModel>()
+                .Filter("name", Postgrest.Constants.Operator.Equals, schedule.Docente)
+                .Single();
+
             if (existe)
             {
+                return RedirectToAction("Index", "Coordinator");
+            }
+
+            if (user.TypeOfContract == "PT")
+            {
+                maxdiarias = 8;
+                maxSemanales = 24;
+            }
+            else
+            {
+                maxdiarias = 10;
+                maxSemanales = 26;
+            }
+
+            if (diarias >= maxdiarias)
+            {
+                // ViewBag.Alert = "Horas excedidas";
+                return RedirectToAction("Index", "Coordinator");
+            }
+
+            if (semanales >= maxSemanales)
+            {
+                // ViewBag.Alert = "Horas excedidas";
                 return RedirectToAction("Index", "Coordinator");
             }
 
