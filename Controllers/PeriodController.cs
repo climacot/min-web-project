@@ -40,12 +40,12 @@ public class PeriodController : Controller
         return View();
     }
 
-    public async Task<IActionResult> Create(PeriodModel period)
+    public async Task<IActionResult> Create(PeriodModel periodp)
     {
         try
         {
-            int diference = Math.Abs((period.endDate.Month - period.startDate.Month) + 12 * (period.endDate.Year - period.startDate.Year));
-            period.Period = diference;
+            int diference = Math.Abs((periodp.endDate.Month - periodp.startDate.Month) + 12 * (periodp.endDate.Year - periodp.startDate.Year));
+            periodp.Period = diference;
 
             if (diference < 3)
             {
@@ -53,7 +53,7 @@ public class PeriodController : Controller
             }
 
             var instance = Supabase.Client.Instance;
-            var channels = await instance.From<PeriodModel>().Insert(period);
+            var channels = await instance.From<PeriodModel>().Insert(periodp);
             return RedirectToAction("Index", "Coordinator");
         }
         catch (System.Exception)

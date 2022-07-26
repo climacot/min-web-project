@@ -74,12 +74,10 @@
             <thead>
                 <tr>
                     <th class="border border-gray-500 px-4 py-2"></th>
-                    <th class="border border-gray-500 px-4 py-2">Lunes</th>
-                    <th class="border border-gray-500 px-4 py-2">Martes</th>
-                    <th class="border border-gray-500 px-4 py-2">Miercoles</th>
-                    <th class="border border-gray-500 px-4 py-2">Jueves</th>
-                    <th class="border border-gray-500 px-4 py-2">Viernes</th>
-                    <th class="border border-gray-500 px-4 py-2">Sabado</th>
+                    @foreach (var item in Model.days)
+                    {
+                        <th class="border border-gray-500 px-4 py-2">@item</th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -87,47 +85,35 @@
                     <td class="border border-gray-500 px-4 py-2">
                         7 am - 1 pm
                     </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
+                    @foreach (var item in Model.days)
+                    {
+                        <td class="border border-gray-500 px-4 py-2">
+                            @foreach (var item2 in Model.ScheduleModel)
+                            {
+                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("7 am - 1 pm"))
+                                {
+                                    <div>@item2.Docente</div>
+                                }
+                            }
+                        </td>
+                    }
                 </tr>
                 <tr>
                     <td class="border border-gray-500 px-4 py-2">
                         2 pm - 10 pm
                     </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
+                    @foreach (var item in Model.days)
+                    {
+                        <td class="border border-gray-500 px-4 py-2">
+                            @foreach (var item2 in Model.ScheduleModel)
+                            {
+                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("2 pm - 10 pm"))
+                                {
+                                    <div>@item2.Docente</div>
+                                }
+                            }
+                        </td>
+                    }
                 </tr>
             </tbody>
         </table>
