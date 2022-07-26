@@ -1,3 +1,5 @@
+@model min_web_project_v2.Models.TeacherInformationModel
+
 @{
     ViewData["Title"] = "Docente";
     Layout = "/Views/Shared/_LayoutTeacher.cshtml";
@@ -18,61 +20,167 @@
         <table>
             <thead>
                 <tr>
-                    <th class="border border-gray-500 px-4 py-2"></th>
-                    <th class="border border-gray-500 px-4 py-2">Lunes</th>
-                    <th class="border border-gray-500 px-4 py-2">Martes</th>
-                    <th class="border border-gray-500 px-4 py-2">Miercoles</th>
-                    <th class="border border-gray-500 px-4 py-2">Jueves</th>
-                    <th class="border border-gray-500 px-4 py-2">Viernes</th>
-                    <th class="border border-gray-500 px-4 py-2">Sabado</th>
+                    <th class="border border-gray-500"></th>
+                    @foreach (var item in Model.days)
+                    {
+                        <th class="border border-gray-500 px-4 py-2">@item</th>
+                    }
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="border border-gray-500 px-4 py-2">
-                        7 am - 1 pm
+                    <td class="border border-gray-500">
+                        7 am - 9 am
                     </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
+                    @foreach (var item in Model.days)
+                    {
+                        <td class="border border-gray-500">
+                            @foreach (var item2 in Model.ScheduleModel)
+                            {
+                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("7 am - 9 am"))
+                                {
+                                    <div class="@Model.colors[new Random().Next(Model.colors.Length)] px-4 py-2 mb-1">
+                                        <div>Nombre: @item2.Docente</div>
+                                        <div>Periodo: @item2.Periodo</div>
+                                        <div>Ambiente: @item2.Ambiente</div>
+                                        <div>Programa - Competencia: @item2.ProgramaAmbiente</div>
+                                    </div>
+                                }
+                            }
+                        </td>
+                    }
                 </tr>
                 <tr>
-                    <td class="border border-gray-500 px-4 py-2">
-                        2 pm - 10 pm
+                    <td class="border border-gray-500">
+                        9 am - 11 pm
                     </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
+                    @foreach (var item in Model.days)
+                    {
+                        <td class="border border-gray-500">
+                            @foreach (var item2 in Model.ScheduleModel)
+                            {
+                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("9 am - 11 pm"))
+                                {
+                                    <div class="@Model.colors[new Random().Next(Model.colors.Length)] px-4 py-2 mb-1">
+                                        <div>Nombre: @item2.Docente</div>
+                                        <div>Periodo: @item2.Periodo</div>
+                                        <div>Ambiente: @item2.Ambiente</div>
+                                        <div>Programa - Competencia: @item2.ProgramaAmbiente</div>
+                                    </div>
+                                }
+                            }
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td class="border border-gray-500">
+                        11 am - 1 pm
                     </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
+                    @foreach (var item in Model.days)
+                    {
+                        <td class="border border-gray-500">
+                            @foreach (var item2 in Model.ScheduleModel)
+                            {
+                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("11 am - 1 pm"))
+                                {
+                                    <div class="@Model.colors[new Random().Next(Model.colors.Length)] px-4 py-2 mb-1">
+                                        <div>Nombre: @item2.Docente</div>
+                                        <div>Periodo: @item2.Periodo</div>
+                                        <div>Ambiente: @item2.Ambiente</div>
+                                        <div>Programa - Competencia: @item2.ProgramaAmbiente</div>
+                                    </div>
+                                }
+                            }
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td class="border border-gray-500">
+                        2 pm - 4 pm
                     </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
+                    @foreach (var item in Model.days)
+                    {
+                        <td class="border border-gray-500">
+                            @foreach (var item2 in Model.ScheduleModel)
+                            {
+                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("2 pm - 4 pm"))
+                                {
+                                    <div class="@Model.colors[new Random().Next(Model.colors.Length)] px-4 py-2 mb-1">
+                                        <div>Nombre: @item2.Docente</div>
+                                        <div>Periodo: @item2.Periodo</div>
+                                        <div>Ambiente: @item2.Ambiente</div>
+                                        <div>Programa - Competencia: @item2.ProgramaAmbiente</div>
+                                    </div>
+                                }
+                            }
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td class="border border-gray-500">
+                        4 pm - 6 pm
                     </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
+                    @foreach (var item in Model.days)
+                    {
+                        <td class="border border-gray-500">
+                            @foreach (var item2 in Model.ScheduleModel)
+                            {
+                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("4 pm - 6 pm"))
+                                {
+                                    <div class="@Model.colors[new Random().Next(Model.colors.Length)] px-4 py-2 mb-1">
+                                        <div>Nombre: @item2.Docente</div>
+                                        <div>Periodo: @item2.Periodo</div>
+                                        <div>Ambiente: @item2.Ambiente</div>
+                                        <div>Programa - Competencia: @item2.ProgramaAmbiente</div>
+                                    </div>
+                                }
+                            }
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td class="border border-gray-500">
+                        6 pm - 8 pm
                     </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
+                    @foreach (var item in Model.days)
+                    {
+                        <td class="border border-gray-500">
+                            @foreach (var item2 in Model.ScheduleModel)
+                            {
+                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("6 pm - 8 pm"))
+                                {
+                                    <div class="@Model.colors[new Random().Next(Model.colors.Length)] px-4 py-2 mb-1">
+                                        <div>Nombre: @item2.Docente</div>
+                                        <div>Periodo: @item2.Periodo</div>
+                                        <div>Ambiente: @item2.Ambiente</div>
+                                        <div>Programa - Competencia: @item2.ProgramaAmbiente</div>
+                                    </div>
+                                }
+                            }
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td class="border border-gray-500">
+                        8 pm - 10 pm
                     </td>
-                    <td class="border border-gray-500 px-4 py-2">
-
-                    </td>
+                    @foreach (var item in Model.days)
+                    {
+                        <td class="border border-gray-500">
+                            @foreach (var item2 in Model.ScheduleModel)
+                            {
+                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("8 pm - 10 pm"))
+                                {
+                                    <div class="@Model.colors[new Random().Next(Model.colors.Length)] px-4 py-2 mb-1">
+                                        <div>Nombre: @item2.Docente</div>
+                                        <div>Periodo: @item2.Periodo</div>
+                                        <div>Ambiente: @item2.Ambiente</div>
+                                        <div>Programa - Competencia: @item2.ProgramaAmbiente</div>
+                                    </div>
+                                }
+                            }
+                        </td>
+                    }
                 </tr>
             </tbody>
         </table>
