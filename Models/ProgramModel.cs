@@ -11,5 +11,7 @@ namespace min_web_project_v2.Models
 
         [Column("name")]
         public string Name { get; set; }
+
+        public List<CompetenciesModel> competencies { get; set; }
     }
 }

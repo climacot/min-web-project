@@ -3,4 +3,110 @@
     Layout = "/Views/Shared/_LayoutCoordinator.cshtml";
 }
 
-<h1>Coordinador</h1>
+<body>
+    <div class="flex flex-col justify-center mx-16 my-16">
+        <div class="mb-12 flex flex-row gap-4 flex-wrap">
+            <div class="flex flex-col">
+                <spa>Periodo</spa>
+                <select class="px-2 rounded-md border-2 border-gray w-80 h-10">
+                    @foreach (PeriodModel item in Model.PeriodModels)
+                    {
+                        <option value="@item.Name">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="flex flex-col">
+                <spa>Docente</spa>
+                <select class="px-2 rounded-md border-2 border-gray w-80 h-10">
+                    @foreach (UserModel item in Model.UserModels)
+                    {
+                        <option value="@item.Name">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="flex flex-col">
+                <spa>Ambiente</spa>
+                <select class="px-2 rounded-md border-2 border-gray w-80 h-10">
+                    @foreach (EnvironmentModel item in Model.EnvironmentModels)
+                    {
+                        <option value="@item.name">@item.name</option>
+                    }
+                </select>
+            </div>
+            <div class="flex flex-col">
+                <spa>Competencia - Programa</spa>
+                <select class="px-2 rounded-md border-2 border-gray w-80 h-10">
+                    @foreach (ProgramModel item in Model.ProgramModels)
+                    {
+                        <option value="@item.Name">@item.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="border border-gray-500 px-4 py-2"></th>
+                    <th class="border border-gray-500 px-4 py-2">Lunes</th>
+                    <th class="border border-gray-500 px-4 py-2">Martes</th>
+                    <th class="border border-gray-500 px-4 py-2">Miercoles</th>
+                    <th class="border border-gray-500 px-4 py-2">Jueves</th>
+                    <th class="border border-gray-500 px-4 py-2">Viernes</th>
+                    <th class="border border-gray-500 px-4 py-2">Sabado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border border-gray-500 px-4 py-2">
+                        7 am - 1 pm
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+                        a
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+                        a
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+                        a
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+                        a
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+                        a
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+                        a
+                    </td>
+                </tr>
+                <tr>
+                    <td class="border border-gray-500 px-4 py-2">
+                        2 pm - 10 pm
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+                        a
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+                        a
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+                        a
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+                        a
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+                        a
+                    </td>
+                    <td class="border border-gray-500 px-4 py-2">
+                        a
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="mt-12">
+            <a
+                class="rounded-md bg-black font-semibold p-2 text-center cursor-pointer text-white hover:bg-black/80">Guardar</a>
+        </div>
+    </div>
+</body>

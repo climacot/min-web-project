@@ -29,7 +29,19 @@ public class CoordinatorController : Controller
 
         if (user.Role.Equals("coordinador"))
         {
-            return View();
+            List<EnvironmentModel> environments = Supabase.Client.Instance.From<EnvironmentModel>().Get().Result.Models;
+            List<UserModel> teachers = Supabase.Client.Instance.From<UserModel>().Get().Result.Models;
+            List<PeriodModel> periods = Supabase.Client.Instance.From<PeriodModel>().Get().Result.Models;
+            List<ProgramModel> programs = Supabase.Client.Instance.From<ProgramModel>().Get().Result.Models;
+
+            LogicModel logic = new LogicModel();
+
+            logic.EnvironmentModels = environments;
+            logic.PeriodModels = periods;
+            logic.ProgramModels = programs;
+            logic.UserModels = teachers;
+
+            return View(logic);
         }
 
         if (user.Role.Equals("docente"))

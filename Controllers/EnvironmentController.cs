@@ -30,11 +30,6 @@ public class EnvironmentController : Controller
 
         if (user.Role.Equals("coordinador"))
         {
-            // environments = await Supabase.Client.Instance.From<EnvironmentModel>().Filter()
-            environments = Supabase.Client.Instance.From<EnvironmentModel>().Get().Result.Models;
-
-            Console.WriteLine("Lista de ambientes: ");
-            Console.WriteLine(environments[0].name);
             return View();
         }
 
