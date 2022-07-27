@@ -29,8 +29,15 @@ public class CoordinatorController : Controller
 
         if (user.Role.Equals("coordinador"))
         {
-            List<EnvironmentModel> environments = Supabase.Client.Instance.From<EnvironmentModel>().Get().Result.Models;
-            List<UserModel> teachers = Supabase.Client.Instance.From<UserModel>().Get().Result.Models;
+            List<EnvironmentModel> environments = Supabase.Client.Instance
+                .From<EnvironmentModel>()
+                .Filter("state", Postgrest.Constants.Operator.Equals, "true")
+                .Get().Result.Models;
+            List<UserModel> teachers = Supabase.Client.Instance
+                .From<UserModel>()
+                .Filter("state", Postgrest.Constants.Operator.Equals, "true")
+                // .Filter("role", Postgrest.Constants.Operator.Equals, "docente")
+                .Get().Result.Models;
             List<PeriodModel> periods = Supabase.Client.Instance.From<PeriodModel>().Get().Result.Models;
             List<ProgramModel> programs = Supabase.Client.Instance.From<ProgramModel>().Get().Result.Models;
             List<ScheduleModel> schedule = Supabase.Client.Instance.From<ScheduleModel>().Get().Result.Models;
@@ -38,9 +45,23 @@ public class CoordinatorController : Controller
             List<AsociateModel> asociate = Supabase.Client.Instance
                 .From<AsociateModel>()
                 .Select("program(*), competencies(*)")
+                .Filter("state", Postgrest.Constants.Operator.Equals, "true")
                 .Get().Result.Models;
 
             LogicModel logic = new LogicModel();
+
+            for (int i = 0; i < schedule.Count; i++)
+            {
+                if (schedule[i].Docente.Equals("climaco"))
+                {
+                    schedule[i].Color = "bg-blue-300";
+                }
+
+                if (schedule[i].Docente.Equals("cristian"))
+                {
+                    schedule[i].Color = "bg-orange-300";
+                }
+            }
 
             logic.EnvironmentModels = environments;
             logic.PeriodModels = periods;
@@ -48,6 +69,7 @@ public class CoordinatorController : Controller
             logic.UserModels = teachers;
             logic.ScheduleModel = schedule;
 
+            // ViewBag.Alert = "dddd";
             return View(logic);
         }
 
@@ -55,7 +77,7 @@ public class CoordinatorController : Controller
         {
             return RedirectToAction("Index", "Teacher");
         }
-
+        // ViewBag.Alert = "dddd";
         return View();
     }
 
@@ -67,6 +89,8 @@ public class CoordinatorController : Controller
             int diarias = 0;
             int semanales = 0;
             bool existe = false;
+            int maxdiarias;
+            int maxSemanales;
 
             List<ScheduleModel> schedules = Supabase.Client.Instance.From<ScheduleModel>().Get().Result.Models;
 
@@ -77,14 +101,52 @@ public class CoordinatorController : Controller
 
             foreach (var item in schedules)
             {
-                if (schedule.Dia.Equals(item.Dia) && schedule.Horario.Equals(item.Horario) && schedule.Ambiente.Equals(schedule.Ambiente))
+                if (schedule.Docente.Equals(item.Docente) && schedule.Periodo.Equals(item.Periodo))
+                {
+                    semanales = semanales + 2;
+                }
+
+                if (schedule.Docente.Equals(item.Docente) && schedule.Dia.Equals(item.Dia) && schedule.Periodo.Equals(item.Periodo))
+                {
+                    diarias = diarias + 2;
+                }
+
+                if (schedule.Dia.Equals(item.Dia) && schedule.Periodo.Equals(item.Periodo) && schedule.Horario.Equals(item.Horario) && schedule.Ambiente.Equals(schedule.Ambiente))
                 {
                     existe = true;
                 }
             }
 
+            UserModel user = await Supabase.Client.Instance
+                .From<UserModel>()
+                .Filter("name", Postgrest.Constants.Operator.Equals, schedule.Docente)
+                .Single();
+
             if (existe)
             {
+                return RedirectToAction("Index", "Coordinator");
+            }
+
+            if (user.TypeOfContract == "PT")
+            {
+                maxdiarias = 8;
+                maxSemanales = 24;
+            }
+            else
+            {
+                maxdiarias = 10;
+                maxSemanales = 26;
+            }
+
+            if (diarias >= maxdiarias)
+            {
+                // ViewBag.Alert = "Horas excedidas";
+                return RedirectToAction("Index", "Coordinator");
+            }
+
+            if (semanales >= maxSemanales)
+            {
+                // ViewBag.Alert = "Horas excedidas";
                 return RedirectToAction("Index", "Coordinator");
             }
 
