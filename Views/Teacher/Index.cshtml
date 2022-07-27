@@ -59,7 +59,7 @@
                         <td class="border border-gray-500">
                             @foreach (var item2 in Model.ScheduleModel)
                             {
-                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("9 am - 11 pm"))
+                                @if (item2.Dia.Equals(item) && item2.Horario.Equals("9 am - 11 am"))
                                 {
                                     <div class="@Model.colors[new Random().Next(Model.colors.Length)] px-4 py-2 mb-1">
                                         <div>Nombre: @item2.Docente</div>

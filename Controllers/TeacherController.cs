@@ -31,7 +31,7 @@ public class TeacherController : Controller
         if (user.Role.Equals("docente"))
         {
             TheacherInformation.UserModel = user;
-            TheacherInformation.ScheduleModel = Supabase.Client.Instance.From<ScheduleModel>().Filter("teacher", Postgrest.Constants.Operator.Equals, session.Id).Get().Result.Models;
+            TheacherInformation.ScheduleModel = Supabase.Client.Instance.From<ScheduleModel>().Filter("teacher", Postgrest.Constants.Operator.Equals, user.Name).Get().Result.Models;
             
             return View(TheacherInformation);
         }
