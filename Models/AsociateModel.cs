@@ -12,5 +12,7 @@ namespace min_web_project_v2.Models
         public ProgramModel program { get; set; }
 
         public CompetenciesModel competencies { get; set; }
+
+        public bool state { get; set; }
     }
 }

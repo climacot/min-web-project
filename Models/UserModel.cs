@@ -30,5 +30,11 @@ namespace min_web_project_v2.Models
 
         [Column("area")]
         public string Area { get; set; }
+
+        [Column("state")]
+        public bool State { get; set; }
+
+        [Column("color")]
+        public string Color { get; set; }
     }
 }

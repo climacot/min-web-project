@@ -29,8 +29,15 @@ public class CoordinatorController : Controller
 
         if (user.Role.Equals("coordinador"))
         {
-            List<EnvironmentModel> environments = Supabase.Client.Instance.From<EnvironmentModel>().Get().Result.Models;
-            List<UserModel> teachers = Supabase.Client.Instance.From<UserModel>().Get().Result.Models;
+            List<EnvironmentModel> environments = Supabase.Client.Instance
+                .From<EnvironmentModel>()
+                .Filter("state", Postgrest.Constants.Operator.Equals, "true")
+                .Get().Result.Models;
+            List<UserModel> teachers = Supabase.Client.Instance
+                .From<UserModel>()
+                .Filter("state", Postgrest.Constants.Operator.Equals, "true")
+                // .Filter("role", Postgrest.Constants.Operator.Equals, "docente")
+                .Get().Result.Models;
             List<PeriodModel> periods = Supabase.Client.Instance.From<PeriodModel>().Get().Result.Models;
             List<ProgramModel> programs = Supabase.Client.Instance.From<ProgramModel>().Get().Result.Models;
             List<ScheduleModel> schedule = Supabase.Client.Instance.From<ScheduleModel>().Get().Result.Models;
@@ -38,9 +45,23 @@ public class CoordinatorController : Controller
             List<AsociateModel> asociate = Supabase.Client.Instance
                 .From<AsociateModel>()
                 .Select("program(*), competencies(*)")
+                .Filter("state", Postgrest.Constants.Operator.Equals, "true")
                 .Get().Result.Models;
 
             LogicModel logic = new LogicModel();
+
+            for (int i = 0; i < schedule.Count; i++)
+            {
+                if (schedule[i].Docente.Equals("climaco"))
+                {
+                    schedule[i].Color = "bg-blue-300";
+                }
+
+                if (schedule[i].Docente.Equals("cristian"))
+                {
+                    schedule[i].Color = "bg-orange-300";
+                }
+            }
 
             logic.EnvironmentModels = environments;
             logic.PeriodModels = periods;
@@ -90,7 +111,7 @@ public class CoordinatorController : Controller
                     diarias = diarias + 2;
                 }
 
-                if (schedule.Dia.Equals(item.Dia) && schedule.Horario.Equals(item.Horario) && schedule.Ambiente.Equals(schedule.Ambiente))
+                if (schedule.Dia.Equals(item.Dia) && schedule.Periodo.Equals(item.Periodo) && schedule.Horario.Equals(item.Horario) && schedule.Ambiente.Equals(schedule.Ambiente))
                 {
                     existe = true;
                 }

@@ -39,7 +39,7 @@ Requerimientos
 13. el sistema presenta al coordinador un horario compuesto por columnas que indican los días de lunes a sábado y las filas indican las
     horas de 7 a.m. hasta las 10 p.m ✅
 14. El coordinador selecciona un Periodo Académico (Activo, se debe validar considerando las fechas de inicio y fin del periodo) ✅
-15. El coordinador selecciona o busca un docente (Activo) ⚠
+15. El coordinador selecciona o busca un docente (Activo) ✅
 16. El coordinador selecciona una franja horaria (día y horas) ✅
 17. El coordinador selecciona la competencia que dictará el docente, la cantidad de horas a orientar de la competencia y el ambiente de aprendizaje ✅
 18. El sistema debe detectar las reglas de negocio del docente (cantidad de horas diarias y por semana) y

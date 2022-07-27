@@ -15,6 +15,9 @@ namespace min_web_project_v2.Models
         [Column("day")]
         public string Dia { get; set; }
 
+        [Column("color")]
+        public string Color { get; set; }
+
         [Column("schecule")]
         public string Horario { get; set; }
 

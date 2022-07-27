@@ -14,5 +14,8 @@ namespace min_web_project_v2.Models
 
         [Column("type")]
         public string Tipo { get; set; }
+
+        [Column("state")]
+        public bool State { get; set; }
     }
 }
