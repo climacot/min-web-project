@@ -47,7 +47,7 @@ public class PeriodController : Controller
             int diference = Math.Abs((periodp.endDate.Month - periodp.startDate.Month) + 12 * (periodp.endDate.Year - periodp.startDate.Year));
             periodp.Period = diference;
 
-            if (diference < 3)
+            if (diference != 3 && diference != 6)
             {
                 return RedirectToAction("Index", "Period");
             }

@@ -36,7 +36,7 @@ public class CoordinatorController : Controller
             List<UserModel> teachers = Supabase.Client.Instance
                 .From<UserModel>()
                 .Filter("state", Postgrest.Constants.Operator.Equals, "true")
-                // .Filter("role", Postgrest.Constants.Operator.Equals, "docente")
+                .Filter("role", Postgrest.Constants.Operator.Equals, "docente")
                 .Get().Result.Models;
             List<PeriodModel> periods = Supabase.Client.Instance.From<PeriodModel>().Get().Result.Models;
             List<ProgramModel> programs = Supabase.Client.Instance.From<ProgramModel>().Get().Result.Models;
@@ -60,6 +60,16 @@ public class CoordinatorController : Controller
                 if (schedule[i].Docente.Equals("cristian"))
                 {
                     schedule[i].Color = "bg-orange-300";
+                }
+
+                if (schedule[i].Docente.Equals("daniela"))
+                {
+                    schedule[i].Color = "bg-yellow-300";
+                }
+
+                if (schedule[i].Docente.Equals("climaco fernando"))
+                {
+                    schedule[i].Color = "bg-indigo-300";
                 }
             }
 
@@ -89,15 +99,11 @@ public class CoordinatorController : Controller
             int diarias = 0;
             int semanales = 0;
             bool existe = false;
+            bool existep = false;
             int maxdiarias;
             int maxSemanales;
 
             List<ScheduleModel> schedules = Supabase.Client.Instance.From<ScheduleModel>().Get().Result.Models;
-
-            ScheduleModel scheduleu = await Supabase.Client.Instance
-                .From<ScheduleModel>()
-                .Filter("teacher", Postgrest.Constants.Operator.Equals, schedule.Docente)
-                .Single();
 
             foreach (var item in schedules)
             {
@@ -111,9 +117,14 @@ public class CoordinatorController : Controller
                     diarias = diarias + 2;
                 }
 
-                if (schedule.Dia.Equals(item.Dia) && schedule.Periodo.Equals(item.Periodo) && schedule.Horario.Equals(item.Horario) && schedule.Ambiente.Equals(schedule.Ambiente))
+                if (schedule.Dia.Equals(item.Dia) && schedule.Periodo.Equals(item.Periodo) && schedule.Horario.Equals(item.Horario) && schedule.Ambiente.Equals(item.Ambiente))
                 {
                     existe = true;
+                }
+
+                if (schedule.Docente.Equals(item.Docente) && schedule.Dia.Equals(item.Dia) && schedule.Periodo.Equals(item.Periodo) && schedule.Horario.Equals(item.Horario))
+                {
+                    existep = true;
                 }
             }
 
@@ -121,6 +132,11 @@ public class CoordinatorController : Controller
                 .From<UserModel>()
                 .Filter("name", Postgrest.Constants.Operator.Equals, schedule.Docente)
                 .Single();
+
+            if (existep)
+            {
+                return RedirectToAction("Index", "Coordinator");
+            }
 
             if (existe)
             {
@@ -130,12 +146,12 @@ public class CoordinatorController : Controller
             if (user.TypeOfContract == "PT")
             {
                 maxdiarias = 8;
-                maxSemanales = 24;
+                maxSemanales = 32;
             }
             else
             {
                 maxdiarias = 10;
-                maxSemanales = 26;
+                maxSemanales = 40;
             }
 
             if (diarias >= maxdiarias)
